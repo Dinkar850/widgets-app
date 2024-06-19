@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather</title>
+    <link rel = stylesheet href="css/styles.css">
+</head>
+<body>
+    <form action="/weather" method="post" name="weatherApp" onsubmit="return validateWeather()">
+        <h1>Check Weather</h1>
+        <label name="cityName">City Name: </label>
+        <div><input name="cityName" type="text" placeholder="Enter City"></div>
+        <button type="submit" style = "background-color:aliceblue;border: 2px solid rgb(25, 125, 125)">Get Weather</button>
+    </form>
+    <script src="js/validate.js"></script>
+</body>
+</html>

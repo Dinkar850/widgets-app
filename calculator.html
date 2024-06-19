@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculator</title>
+    <link rel = stylesheet href="css/styles.css">
+
+  </head>
+  <body>
+    <h1>Calculator</h1>
+    <form action="/calculator" method="post" onsubmit="return validateCalculator()" name="form">
+      <input type="text" name="n1" placeholder="Number1" class="nn1"/>
+      <input type="text" name="n2" placeholder="Number2" class="nn2"/>
+      <button type="submit" name="operator" value="+">+</button>
+      <button type="submit" name="operator" value="-">-</button>
+      <button type="submit" name="operator" value="*">*</button>
+      <button type="submit" name="operator" value="/">/</button>
+    </form>
+  <script src="js/validate.js"></script>
+
+  </body>
+</html>
