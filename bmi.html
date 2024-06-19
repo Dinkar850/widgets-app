@@ -9,11 +9,11 @@
 </head>
 <body>
     <h1>Check BMI</h1>
-    <form action="/bmi" method="post">
+    <form action="/bmi" method="post" name="form" onsubmit="return validateBMICalculator()">
         <label name = "Height">Height (in m)</label>
-        <input type="text" name="height"><br>
+        <input type="text" name="height" class="hh"><br>
         <label name="Weight">Weight (in kgs)</label>
-        <input type="text" name="weight"><br>
+        <input type="text" name="weight" class="ww"><br>
         <button type="submit">Calculate BMI</button>
     </form>
   <script src="js/validate.js"></script>

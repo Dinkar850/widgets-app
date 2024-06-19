@@ -80,8 +80,9 @@ function validateWeather() {
 
 function validateCalculator() {
     let calculatorForm = document.form;
-    const num1 = calculatorForm.n1.value;
-    const num2 = calculatorForm.n2.value;
+    var num1 = calculatorForm.n1.value;
+    var num2 = calculatorForm.n2.value;
+    const validRegex = /^\d*\.?\d*$/;
 
     if(!num1) {
         document.querySelector("input.nn1").classList.add("red_border");
@@ -95,8 +96,7 @@ function validateCalculator() {
     console.log(typeof(num1));
 
 
-    if(!num1.isNaN()) {
-        num1 = Number(num1);
+    if(!num1.match(validRegex)) {
         document.querySelector("input.nn1").classList.add("red_border");
         document.querySelector("input.nn1").addEventListener("click", function() {
             this.classList.remove("red_border");
@@ -116,13 +116,66 @@ function validateCalculator() {
         return false;
     }
 
-    if(typeof(num2) !== "number") {
+    if(!num2.match(validRegex)) {
+        num1 = Number(num1);
+
         document.querySelector("input.nn2").classList.add("red_border");
         document.querySelector("input.nn2").addEventListener("click", function() {
             this.classList.remove("red_border");
         });
         
         alert("Please enter a valid number");
+        return false;
+    }
+}
+
+function validateBMICalculator() {
+    let bmicalculatorForm = document.form;
+    var h = bmicalculatorForm.height.value;
+    var w = bmicalculatorForm.weight.value;
+    const validRegex = /^\d*\.?\d*$/;
+
+    if(!h) {
+        document.querySelector("input.hh").classList.add("red_border");
+        document.querySelector("input.hh").addEventListener("click", function() {
+            this.classList.remove("red_border");
+        });
+        
+        alert("Please enter a height");
+        return false;
+    }
+    console.log(typeof(num1));
+
+
+    if(!h.match(validRegex)) {
+        document.querySelector("input.hh").classList.add("red_border");
+        document.querySelector("input.hh").addEventListener("click", function() {
+            this.classList.remove("red_border");
+        });
+        
+        alert("Please enter a valid height");
+        return false;
+    }
+
+    if(!w) {
+        document.querySelector("input.ww").classList.add("red_border");
+        document.querySelector("input.ww").addEventListener("click", function() {
+            this.classList.remove("red_border");
+        });
+        
+        alert("Please enter a weight");
+        return false;
+    }
+
+    if(!w.match(validRegex)) {
+        num1 = Number(num1);
+
+        document.querySelector("input.ww").classList.add("red_border");
+        document.querySelector("input.ww").addEventListener("click", function() {
+            this.classList.remove("red_border");
+        });
+        
+        alert("Please enter a valid weight");
         return false;
     }
 }
