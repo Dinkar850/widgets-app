@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 //get
 
-app.get("/signup", (req, res) => {
+app.get("/", (req, res) => {
   const fileURL = path.join(__dirname, "signup.html");
   res.sendFile(fileURL);
 });
@@ -45,7 +45,7 @@ app.get("/bmi", (req, res) => {
 
 //post
 
-app.post("/signup", (req, res) => {
+app.post("", (req, res) => {
   const firstName = req.body.firstName;
   const lastName = req.body.lastName;
   const email = req.body.email;
