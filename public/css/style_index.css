@@ -1,10 +1,11 @@
 html,
 body {
-  height: 100%;
   text-align: center;
   background-image: url("/images/background_index.jpg");
-  background-size: 100%;
   background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: cover;
   
 }
 
