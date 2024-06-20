@@ -37,7 +37,7 @@ h1 {
   position: relative;
 
   font-family: "Playwrite PL", cursive;
-  font-weight: 1000;
+  font-weight: 400;
 }
 
 .item:last-child {
@@ -72,7 +72,7 @@ p {
   font-weight: 200;
   color: #00204a;
   position: absolute;
-  bottom: 9px;
+  bottom: 3px;
 }
 
 input[type="checkbox"]:checked::after {
