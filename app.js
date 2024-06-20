@@ -12,11 +12,19 @@ import { WEATHER_API_KEY, MAILCHIMP_API_AUTH, LIST_ID } from "./apikeys.js";
 const app = express();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+let tasks = [];
+
+//use
 
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 
+//set 
+
+app.set("view engine", "ejs");
+
 //get
+
 
 app.get("/", (req, res) => {
   const fileURL = path.join(__dirname, "signup.html");
@@ -43,9 +51,23 @@ app.get("/bmi", (req, res) => {
   res.sendFile(fileURL);
 });
 
+app.get("/taskApp", (req, res) => {
+  let currDay = new Date();
+  let options = {
+    month: "long",
+    weekday: "long",
+    day: "numeric"
+  }
+
+  let day = currDay.toLocaleDateString("en-US", options);
+  res.render("list", {kindOfDay: day, newTasks: tasks}); 
+});
+
+
+
 //post
 
-app.post("", (req, res) => {
+app.post("/", (req, res) => {
   const firstName = req.body.firstName;
   const lastName = req.body.lastName;
   const email = req.body.email;
@@ -125,21 +147,49 @@ app.post("/weather", (req, res) => {
 });
 
 app.post("/calculator", (req, res) => {
-  var num1 = Number(req.body.n1);
-  var num2 = Number(req.body.n2);
-  var operator = req.body.operator;
+  let num1 = Number(req.body.n1);
+  let num2 = Number(req.body.n2);
+  let operator = req.body.operator;
   console.log(operator);
-  var ans = calculate(num1, num2, operator);
+  let ans = calculate(num1, num2, operator);
   res.send(`The result is ${ans}.`);
 });
 
 app.post("/bmi", (req, res) => {
-  var height = Number(req.body.height);
-  var weight = Number(req.body.weight);
-  var ans = bmi(height, weight);
+  let height = Number(req.body.height);
+  let weight = Number(req.body.weight);
+  let ans = bmi(height, weight);
   res.send(`Your BMI is ${ans}`);
 });
 
+app.post("/taskApp", (req, res) => {
+  console.log(req.body);
+  let formBody = req.body;
+  let task = formBody.task;
+  if(formBody.clear) {
+      tasks = [];
+  }
+  
+
+  else if(formBody.clearCompleted) {
+      let indexArray = formBody.checker;
+      for(let i = 0; i < indexArray.length; i++) {
+          tasks[indexArray[i]] = "";
+      }
+      let temp = [];
+      for(let i = 0; i < tasks.length; i++) {
+          if(tasks[i] !== "") {
+              temp.push(tasks[i]);
+          }
+      }
+      tasks = temp;
+  }
+
+  else{
+      if(task) tasks.push(task)
+  } 
+  res.redirect("/taskApp");
+});
 
 
 app.listen(process.env.PORT || 3000, (req, res) => {

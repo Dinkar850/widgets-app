@@ -1,0 +1,160 @@
+html {
+  background-image: url("/images/workbench.jpg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: cover;
+  min-height: 1000px;
+}
+
+h1 {
+  color: #fff;
+  padding: 10px;
+}
+
+.box {
+  max-width: 400px;
+  margin: 20px auto;
+  background: rgb(246, 246, 178);
+  border-radius: 5px;
+  box-shadow: 5px 5px 15px -5px rgba(0, 0, 0, 0.3);
+}
+
+#heading {
+  background-image: url("/images/calendar.png");
+  background-repeat: no-repeat;
+  text-align: center;
+  font-weight: lighter;
+  text-decoration: dashed;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+.item {
+  min-height: 70px;
+  align-items: center;
+  border-bottom: 1px solid black;
+
+  position: relative;
+
+  font-family: "Playwrite PL", cursive;
+  font-weight: 1000;
+}
+
+.item:last-child {
+  border-bottom: 0;
+  font-family: "Playwrite PL", cursive;
+}
+
+input:checked + p {
+  text-decoration: line-through;
+  text-decoration-color: black;
+}
+
+input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid black;
+  border-radius: 3px;
+  outline: none;
+  cursor: pointer;
+  margin: 20px;
+  position: relative;
+}
+
+p {
+  margin-top: 00px;
+  display: inline-block;
+  padding-left: 10px;
+  font-size: 20px;
+  font-weight: 200;
+  color: #00204a;
+  position: absolute;
+  bottom: 9px;
+}
+
+input[type="checkbox"]:checked::after {
+  content: "\2713"; /* Unicode character for checkmark */
+  font-size: 16px;
+  color: black;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#itemform {
+  text-align: center;
+  margin-left: 20px;
+}
+
+.plus {
+  min-height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+  border-color: transparent;
+  background-color: transparent;
+  color: black;
+  font-size: 40px;
+  padding-bottom: 6px;
+  border-width: 0;
+}
+
+.clear {
+  min-height: 30px;
+  border-color: transparent;
+  background-color: rgba(49, 16, 5, 0.848);
+  color: #fff;
+  font-size: 1em;
+  padding-bottom: 6px;
+  border-width: 0;
+  margin-top: 0px;
+  margin-left: 10px;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+#checkboxform {
+  display: inline-block;
+}
+
+#buttonform {
+  text-align: center;
+}
+
+input[type="text"] {
+  text-align: center;
+  height: 60px;
+  top: 10px;
+  border: none;
+  background: transparent;
+  font-size: 20px;
+  font-weight: 200;
+  width: 313px;
+  font-family: "Playwrite PL", cursive;
+}
+
+form {
+  margin-bottom: 10px;
+}
+input[type="text"]:focus {
+  outline: none;
+  box-shadow: inset 0 0 0 0;
+}
+
+.align {
+  text-align: center;
+}
+
+::placeholder {
+  color: grey;
+  opacity: 1;
+}
+
+footer {
+  color: white;
+  color: rgba(0, 0, 0, 0.5);
+  text-align: center;
+}

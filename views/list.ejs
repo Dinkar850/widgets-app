@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>weekday</title>
+    <link rel="stylesheet" href="/css/tasksStyles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playwrite+PL:wght@100..400&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div class="box" id="heading">
+      <h1><%= kindOfDay %></h1>
+    </div>
+
+    <form name="form" method="post" action="/taskApp">
+      <div class="box">
+        <% for(var i = 0; i < newTasks.length; i++) { %>
+
+        <div class="item">
+          <input type="checkbox" name="checker" value="<%= i %>" />
+          <p><%= newTasks[i] %></p>
+        </div>
+
+        <% } %>
+
+        <input
+          name="task"
+          type="text"
+          placeholder="New task"
+          autocomplete="off"
+        />
+        <button type="submit" class="plus" onclick="submitForm()">+</button>
+      </div>
+      <div class="align">
+        <button type="submit" name="clear" class="box clear" value="true">
+          Clear all tasks
+        </button>
+        <button type="submit" name="clearCompleted" class="box clear" value="true">
+          Clear completed tasks
+        </button>
+      </div>
+    </form>
+    <script src="/js/formLoad.js"></script>
+  </body>
+</html>
