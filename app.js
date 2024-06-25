@@ -8,11 +8,16 @@ import https from "https";
 import { url } from "inspector";
 import joi from "joi";
 import { WEATHER_API_KEY, MAILCHIMP_API_AUTH, LIST_ID } from "./apikeys.js";
+import http from 'http';
+import { Server } from 'socket.io';
 
 const app = express();
+const server = http.Server(app);
+const io = new Server(server);
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 let tasks = [];
+
 
 //use
 
@@ -62,6 +67,12 @@ app.get("/taskApp", (req, res) => {
   let day = currDay.toLocaleDateString("en-US", options);
   res.render("list", {kindOfDay: day, newTasks: tasks}); 
 });
+
+app.get("/chatAppSelectColor", (req, res) => {
+  const url = path.join(__dirname, 'colorSelect.html');
+  res.sendFile(url);
+});
+
 
 
 
@@ -191,8 +202,29 @@ app.post("/taskApp", (req, res) => {
   res.redirect("/taskApp");
 });
 
+app.post('/chatAppSelectColor', (req, res) => {
+  console.log(req.body);
+  const colorValue = req.body.color;
+  const usernames = req.body.username;
+  res.render('chatWindow', {userrname: usernames, color: colorValue});
+  
+});
 
-app.listen(process.env.PORT || 3000, (req, res) => {
+
+io.on('connection', (socket) => {
+  console.log('A user has connected');
+
+  socket.on('user-message', (messageData) => {
+    // console.log(messageData.userId)
+    // console.log(messageData.username +  ": " + messageData.message);
+    // console.log(messageData.color);
+    io.emit('server-message', (messageData));
+  });
+})
+
+
+
+server.listen(process.env.PORT || 3000, (req, res) => {
   console.log("listening on port 3000");
 });
 

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uuid/8.3.2/uuid.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+
+    <style>
+    body{
+        text-align: center;
+    }        
+      
+      #sendBtn {
+        -webkit-border-radius: 5;
+        -moz-border-radius: 5;
+        border-radius: 5px;
+        font-family: Arial;
+        color: #ffffff;
+        font-size: 15px;
+        background: #000000;
+        padding: 4px 7px 7px 7px;
+        text-decoration: none;
+        border: none;
+      }
+      .inputField {
+        text-align: center;
+        margin-top: 50px;
+      }
+      input {
+        width: 60%;
+        height: 25px;
+      }
+      .chat-container {
+        width: 100%;
+        height: 500px;
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        overflow-y: auto; /* Enable vertical scrolling */
+        padding: 20px;
+        text-align: left;
+        display: flex;
+      flex-direction: column;
+      }
+      
+      .message {
+      margin-bottom: 10px;
+      padding: 10px;
+      background-color: #e9f5f5;
+      border-radius: 5px;
+    }
+
+    </style>
+  </head>
+  <body>
+    <div style="visibility: hidden" id="username"><%= userrname %></div>
+    <div style="visibility: hidden" id="color"><%= color %></div>
+
+    <div class="chat-container" id="chatContainer">
+    
+    </div>
+    <form class="inputField" id="messageForm">
+      <input type="text" id="messageContent" />
+      <button id="sendBtn" type="submit">Send</button>
+    </form>
+
+    <script>
+      const socket = io();
+      const userId = uuid.v4();
+      const username = document.querySelector("#username").textContent;
+      const color = document.querySelector("#color").textContent;
+      const butt = document.querySelector("#sendBtn");
+      const messageInp = document.querySelector("#messageContent");
+      const formName = document.getElementById("messageForm");
+      console.log(userId, username, color);
+      butt.style.background = color;
+
+      socket.on('server-message', (messageData) => {
+        console.log(messageData.username, messageData.color, messageData.message, messageData.userId);
+        addMessage(messageData.username, messageData.color, messageData.message, messageData.userId);
+      })
+      
+      formName.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const message = messageInp.value;
+        const messageData = {
+            message: message,
+            username: username,
+            userId: userId,
+            color: color
+        }
+        messageInp.value = '';
+        socket.emit('user-message', messageData);
+      })
+
+      function addMessage(sender, color, text, user){
+        const messageElement = document.createElement('div');
+        messageElement.classList.add('message');
+        messageElement.innerHTML = `<span class="${sender}">${sender}:</span> ${text}`;
+        chatContainer.appendChild(messageElement);
+        console.log(color);
+        document.querySelectorAll(`.${sender}`).forEach( (post) => {
+          post.style.color = color;  
+          post.style.fontFamily = `"Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+          sans-serif`;
+          post.style.fontSize = '1em';
+          post.style.fontWeight = '700';
+
+        });
+      }
+
+    </script>
+  </body>
+</html>
