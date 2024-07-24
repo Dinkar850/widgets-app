@@ -80,7 +80,9 @@
       socket.on('server-message', (messageData) => {
         console.log(messageData.username, messageData.color, messageData.message, messageData.userId);
         addMessage(messageData.username, messageData.color, messageData.message, messageData.userId);
-      })
+      });
+
+      chatContainer.scrollTop = chatContainer.scrollHeight;
       
       formName.addEventListener('submit', (e) => {
         e.preventDefault();

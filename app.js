@@ -7,6 +7,8 @@ import { constants } from "buffer";
 import https from "https";
 import { url } from "inspector";
 import joi from "joi";
+import axios from "axios";
+import summarizeText from "./summarize.js";
 import { WEATHER_API_KEY, MAILCHIMP_API_AUTH, LIST_ID } from "./apikeys.js";
 import http from 'http';
 import { Server } from 'socket.io';
@@ -21,7 +23,9 @@ let tasks = [];
 
 //use
 
+app.use(express.json());
 app.use(express.static("public"));
+
 app.use(bodyParser.urlencoded({ extended: true }));
 
 //set 
@@ -72,6 +76,11 @@ app.get("/chatAppSelectColor", (req, res) => {
   const url = path.join(__dirname, 'colorSelect.html');
   res.sendFile(url);
 });
+
+app.get("/summarizer", (req, res) => {
+  const url = path.join(__dirname, 'summerizerHtml.html');
+  res.sendFile(url);
+})
 
 
 
@@ -208,6 +217,19 @@ app.post('/chatAppSelectColor', (req, res) => {
   const usernames = req.body.username;
   res.render('chatWindow', {userrname: usernames, color: colorValue});
   
+});
+
+app.post('/summarize', (req, res) => {
+  const text = req.body.text_to_summarize;
+  
+  summarizeText(text)
+    .then(summary => {
+      res.send(summary);
+    })
+    .catch(error => {
+      console.error(error);
+      res.status(500).json({ error: 'An error occurred while summarizing the text.' });
+    });
 });
 
 
