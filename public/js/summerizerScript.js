@@ -1,5 +1,5 @@
 
-import { ACCESS_TOKEN } from "../../apikeys";
+import { ACCESS_TOKEN } from "./apikeys.js";
 const textArea = document.getElementById("text_to_summarize");
 const submitButton = document.getElementById("submit-button");
 const summarizedTextArea = document.getElementById("summary");

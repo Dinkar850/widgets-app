@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ACCESS_TOKEN } from "./apikeys";
+import { ACCESS_TOKEN } from "./apikeys.js";
 
 async function summarizeText(text) {
   let data = JSON.stringify({

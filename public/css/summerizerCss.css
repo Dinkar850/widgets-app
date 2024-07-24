@@ -117,7 +117,7 @@ textarea {
 
 .submit-button:disabled{
   position: relative;
-  background-color: #137e86;
+  background-color: #a4dfe3;
   color: #ffffff;
   opacity: 40%;
   font-weight: bold;
@@ -125,7 +125,6 @@ textarea {
   border: none;
   padding: 10px 20px;
   border-radius: 4px;
-  cursor: pointer;
   margin-bottom: -5px;
 }
 
