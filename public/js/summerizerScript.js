@@ -1,5 +1,5 @@
 
-
+import { ACCESS_TOKEN } from "../../apikeys";
 const textArea = document.getElementById("text_to_summarize");
 const submitButton = document.getElementById("submit-button");
 const summarizedTextArea = document.getElementById("summary");
@@ -27,7 +27,7 @@ function submitData(e) {
 
   const myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
-  myHeaders.append("Authorization", "Bearer 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");
+  myHeaders.append("Authorization", `Bearer ${ACCESS_TOKEN}`);
 
   const raw = JSON.stringify({
     "text_to_summarize": text_to_summarize

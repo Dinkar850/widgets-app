@@ -1,4 +1,5 @@
 import axios from "axios";
+import { ACCESS_TOKEN } from "./apikeys";
 
 async function summarizeText(text) {
   let data = JSON.stringify({
@@ -15,7 +16,7 @@ async function summarizeText(text) {
     url: 'https://api-inference.huggingface.co/models/facebook/bart-large-cnn',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer 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`
+      'Authorization': `Bearer ${ACCESS_TOKEN}`
     },
     data: data
   };

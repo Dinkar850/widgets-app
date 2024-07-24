@@ -9,7 +9,7 @@ import { url } from "inspector";
 import joi from "joi";
 import axios from "axios";
 import summarizeText from "./summarize.js";
-import { WEATHER_API_KEY, MAILCHIMP_API_AUTH, LIST_ID } from "./apikeys.js";
+import {ACCESS_TOKEN, WEATHER_API_KEY, MAILCHIMP_API_AUTH, LIST_ID } from "./apikeys.js";
 import http from 'http';
 import { Server } from 'socket.io';
 
