@@ -27,6 +27,7 @@ function submitData(e) {
 
   const myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
+  //removed access token already
   myHeaders.append("Authorization", `Bearer ${ACCESS_TOKEN}`);
 
   const raw = JSON.stringify({

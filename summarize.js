@@ -16,6 +16,7 @@ async function summarizeText(text) {
     url: 'https://api-inference.huggingface.co/models/facebook/bart-large-cnn',
     headers: {
       'Content-Type': 'application/json',
+      //removed access token already
       'Authorization': `Bearer ${ACCESS_TOKEN}`
     },
     data: data
